@@ -11,6 +11,11 @@ jobs:
     timeout-minutes: 10
     steps:
     
+      - name: Download Tools
+        run: |
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          Invoke-WebRequest -Uri https://github.com/moloch--/minisign/releases/download/v0.2.1/minisign.exe -OutFile minisign.exe
+    
       - name: checkout code
         uses: actions/checkout@v3
         
@@ -29,4 +34,30 @@ jobs:
         
       - name: build_x86
         run: "msbuild -p:Configuration=Release -p:Platform=x86 SliverKeylogger.sln"
+        
+      - name: make package
+        run: |
+          mkdir raw_keylogger
+          copy bin\\SliverKeylogger.x86.dll raw_keylogger\\SliverKeylogger.x86.dll
+          copy bin\\SliverKeylogger.x64.dll raw_keylogger\\SliverKeylogger.x64.dll
+          copy extension.json raw_keylogger\\extension.json
+          tar -czvf raw_keylogger.tar.gz raw_keylogger
+          
+      - name: sign package
+        run: |
+          Write-Output "${{ secrets.MINISIGN_PRIVATE_KEY }}" > minisign.key
+          $Content1 = Get-Content -Path ./raw_keylogger/extension.json
+          $Bytes = [System.Text.Encoding]::UTF8.GetBytes($Content1)
+          $Encoded = [System.Convert]::ToBase64String($Bytes)
+          .\minisign.exe -s minisign.key -S -m raw_keylogger.tar.gz -t "$Encoded" -x raw_keylogger.minisig
+          
+      - name: "Publish Release"
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            raw_keylogger.minisig
+            raw_keylogger.tar.gz
+          
     
