@@ -1,6 +1,7 @@
 #  Sliver Keylogger
 
-This extension to sliver was written mostly as a learning excersize into how sliver handles extensions.
+This extension to sliver was written mostly as a learning exercise ![image](https://user-images.githubusercontent.com/3172440/174394786-94255ada-2263-4b0b-8076-348b852b2546.png)
+ into how sliver handles extensions.
 
 I would like to thank the entire [Sliver](https://github.com/BishopFox/sliver) team for there work on this public implant framework.
 I would especially like to thank [@rkervell](https://twitter.com/rkervell) for answering many of my questions related to how sliver handles it extensions
