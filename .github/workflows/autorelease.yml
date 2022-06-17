@@ -20,7 +20,7 @@ jobs:
           msbuild-architecture: x64
         
       - name: build_x64
-        run: msbuild -p:Configuration=Release;Platform=x64 SliverKeylogger.sln 
+        run: "msbuild -p:Configuration=Release;Platform=x64 SliverKeylogger.sln"
       
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.1
@@ -28,5 +28,5 @@ jobs:
           msbuild-architecture: x86
         
       - name: build_x86
-        run: msbuild -p:Configuration=Release;Platform=x86 SliverKeylogger.sln
+        run: "msbuild -p:Configuration=Release;Platform=x86 SliverKeylogger.sln"
     
