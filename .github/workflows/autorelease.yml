@@ -2,11 +2,13 @@ name: Release
 
 on:
   push:
-    branches: [citest]
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+    branches: ["master"]
 
 jobs:
   build-dll:
     name: Build and publish tagged release
+    if: startsWith( github.ref, 'refs/tags/v')
     runs-on: windows-2019
     timeout-minutes: 10
     steps:
