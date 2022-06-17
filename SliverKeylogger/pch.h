@@ -1,0 +1,9 @@
+#pragma once
+#include <Windows.h>
+#include <memory>
+#include <thread>
+#include <string>
+#include <locale>
+#include <codecvt>
+#include <stdint.h>
+#include <mutex>
