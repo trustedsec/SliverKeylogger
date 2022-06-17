@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    branches: [citest]
+
+jobs:
+  build-dll:
+    name: Build and publish tagged release
+    runs-on: windows-2019
+    timeout-minutes: 10
+    steps:
+      -name: checkout code
+      -uses: actions/checkout@v3
+
+      -name: build x64
+        run: |
+          msbuild -p:Configuration=Release;Platform=x64 SliverKeylogger.sln
+
+      -name: build x86
+        run: |
+          msbuild -p:Configuration=Release;Platform=x86 SliverKeylogger.sln
+    
