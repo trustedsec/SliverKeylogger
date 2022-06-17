@@ -1,11 +1,11 @@
 {
     "name": "raw_keylogger",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "command_name": "raw_keylogger",
     "extension_author": "TrustedSec",
     "original_author": "TrustedSec",
     "repo_url": "N/A",
-    "help": "Logs keystrokes using the raw input interface",
+    "help": "Logs keystrokes using the raw input interface\n\t0 = stop\n\t1 = start\n\t2 = get keystrokes",
     "entrypoint": "entrypoint",
     "files": [
     {
