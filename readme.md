@@ -54,4 +54,28 @@ goCallback is a function for returning output to go.   its called like `callback
 
 When coding the extension for now the "name" and "command_name" must match, otherwise the implant will reload your extension on every call.
 
+
+## Utilizing the `parse_keylogger.py` Script
+
+To process and interpret the keylogger output, you can use the `parse_keylogger.py` script located in the `scripts/` directory.
+
+### How to Use:
+
+1. Ensure you have the necessary Python environment set up and active.
+2. Navigate to the `scripts/` directory.
+3. You can run the script in two ways:
+   - By passing the path to a log file:
+     ```bash
+     python parse_keylogger.py --file path_to_log_file.txt
+     ```
+   - By directly passing the log content as a string:
+     ```bash
+     python parse_keylogger.py --string "your_log_content_here"
+     ```
+
+The script will process the log content, interpret special keystroke sequences, and print the human-readable text.
+
+Note: The script currently handles special sequences like `[bs]` for backspaces and `[enter]` for newline entries. Other sequences such as arrow keys are recognized but not fully interpreted for cursor movement.
+
+
 As of this writing non-BOF extensions don't support strongly typed arguments, so everything provided on the cli after the command name will be sent down as a string.  you have to handle it from there on the extension's native code side.
