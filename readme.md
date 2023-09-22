@@ -1,7 +1,6 @@
 #  Sliver Keylogger
 
-This extension to sliver was written mostly as a learning exercise ![image](https://user-images.githubusercontent.com/3172440/174394786-94255ada-2263-4b0b-8076-348b852b2546.png)
- into how sliver handles extensions.
+This extension to sliver was written mostly as a learning exercise ![image](https://user-images.githubusercontent.com/3172440/174394786-94255ada-2263-4b0b-8076-348b852b2546.png) into how sliver handles extensions.
 
 I would like to thank the entire [Sliver](https://github.com/BishopFox/sliver) team for there work on this public implant framework.
 I would especially like to thank [@rkervell](https://twitter.com/rkervell) for answering many of my questions related to how sliver handles it extensions
@@ -55,3 +54,27 @@ goCallback is a function for returning output to go.   its called like `callback
 When coding the extension for now the "name" and "command_name" must match, otherwise the implant will reload your extension on every call.
 
 As of this writing non-BOF extensions don't support strongly typed arguments, so everything provided on the cli after the command name will be sent down as a string.  you have to handle it from there on the extension's native code side.
+
+
+## Utilizing the `parse_keylogger.py` Script
+
+To process and interpret the keylogger output, you can use the `parse_keylogger.py` script located in the `scripts/` directory.
+
+### How to Use:
+
+1. Ensure you have the necessary Python environment set up and active.
+2. Navigate to the `scripts/` directory.
+3. You can run the script in two ways:
+   - By passing the path to a log file:
+     ```bash
+     python parse_keylogger.py --file path_to_log_file.txt
+     ```
+   - By directly passing the log content as a string:
+     ```bash
+     python parse_keylogger.py --string "your_log_content_here"
+     ```
+
+The script will process the log content, interpret special keystroke sequences, and print the human-readable text.
+
+Note: The script currently handles special sequences like `[bs]` for backspaces and `[enter]` for newline entries. Other sequences such as arrow keys are recognized but not fully interpreted for cursor movement.
+
