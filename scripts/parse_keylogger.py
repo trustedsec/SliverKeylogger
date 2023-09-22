@@ -1,3 +1,5 @@
+import argparse
+
 def interpret_backspaces(line):
     """
     Process the backspaces in the provided line of text.
@@ -73,3 +75,23 @@ def interpret_log_string(log_str):
     lines = log_str.split('\n')
     interpreted_log = [process_log_line(line) for line in lines]
     return '\n'.join(interpreted_log)
+
+def main():
+    parser = argparse.ArgumentParser(description='Interpret a keylogger output.')
+    parser.add_argument('--file', type=str, help='Path to the log file to interpret.')
+    parser.add_argument('--string', type=str, help='Log content as a string to interpret.')
+    
+    args = parser.parse_args()
+    
+    if args.file:
+        result = interpret_log_file(args.file)
+    elif args.string:
+        result = interpret_log_string(args.string)
+    else:
+        print("Please provide either --file or --string argument.")
+        return
+
+    print(result)
+
+if __name__ == "__main__":
+    main()
